@@ -56,4 +56,18 @@ cd console && ../yii algolia/index candidate
 ```bash
 ./yii cron/update-candidate-stats
 ./yii cron/update-company-stats
-``` 
+```
+
+## Runtime Service Credentials
+
+### SMS Provider
+
+The password-reset SMS component reads provider settings from environment variables. Do not commit provider usernames, passwords, sender accounts, or private provider URLs.
+
+Required variables:
+* `SMS_PROVIDER_ENDPOINT` - HTTPS endpoint for the SMS provider API.
+* `SMS_PROVIDER_USERNAME` - provider account username.
+* `SMS_PROVIDER_PASSWORD` - provider account password.
+* `SMS_PROVIDER_SENDER` - approved sender name shown to recipients.
+
+The component fails closed when any required value is missing or when the endpoint is not HTTPS, so provider credentials are not sent over plaintext HTTP.
